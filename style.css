@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap+Condensed&family=IBM+Plex+Mono:wght@200;300;400;600;700&family=Raleway&display=swap');
+
+html {
+  font-size: 62.5%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.login-form {
+  font-family: 'Raleway', sans-serif;
+  font-size: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10rem;
+}
+
+.login-form input {
+  font-family: inherit;
+  font-size: 1.6rem;
+  margin-top: 3rem;
+  height: 5rem;
+  padding: 1.5rem;
+  border: none;
+  outline: none;
+}
+
+.header {
+  background-color: #ffcacccc;
+  width: 100rem;
+  height: 8rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.clock {
+  font-family: 'Asap Condensed', sans-serif;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.greeting {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-size: 5rem;
+  color: #fff;
+  text-align: center;
+}
+
+.login-status {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.2rem;
+  font-weight: 200;
+}
+
+.todo-item {
+  font-size: 2rem;
+}
+
+.button-delete {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}

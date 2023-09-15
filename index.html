@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Chrome App</title>
+  </head>
+  <body>
+    <form class="login-form">
+      <label> What is your name? </label>
+      <input
+        class="login-input"
+        type="text"
+        placeholder="Enter Your First Name..."
+      />
+    </form>
+    <header class="header hidden">
+      <div class="clock-and-location">
+        <div class="clock"></div>
+        <div className="location"></div>
+      </div>
+      <div class="greeting"></div>
+      <div class="login-status"></div>
+    </header>
+    <main class="todo hidden">
+      <ul id="todo-list"></ul>
+      <form id="todo-form">
+        <input
+          id="todo-input"
+          type="text"
+          placeholder="Write a To Do and Press Enter"
+        />
+      </form>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
