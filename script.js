@@ -9,7 +9,6 @@ const bgs = [
   'bg-images/bg8.jpg',
 ];
 
-const HIDDEN_CLASSNAME = 'hidden';
 const body = document.querySelector('body');
 const loginForm = document.querySelector('.login-form');
 const loginInput = document.querySelector('.login-input');
@@ -21,6 +20,12 @@ const todo = document.querySelector('.todo');
 const toDoList = document.getElementById('todo-list');
 const toDoForm = document.getElementById('todo-form');
 const toDoInput = document.getElementById('todo-input');
+
+const HIDDEN_CLASSNAME = 'hidden';
+const USERNAME_KEY = 'username';
+const TODOS_KEY = 'todos';
+
+let toDos = [];
 
 /* Random Background Images */
 function changeRandomBg() {
@@ -41,8 +46,12 @@ function onLoginSubmit(e) {
   e.preventDefault();
   loginForm.classList.add(HIDDEN_CLASSNAME);
   const username = loginInput.value;
-  localStorage.setItem('username', username);
+  localStorage.setItem(USERNAME_KEY, username);
   paintGreetings(username);
+}
+
+if (localStorage.getItem(USERNAME_KEY) !== null) {
+  paintGreetings(localStorage.getItem(USERNAME_KEY));
 }
 
 loginForm.addEventListener('submit', onLoginSubmit);
@@ -88,7 +97,7 @@ function clockFn() {
   const seconds = today.getSeconds();
   clock.innerText = `${String(hours).padStart(2, '0')}:${String(
     minutes
-  ).padStart(2, '0')}:${String(seconds).padStart(2, '0')}  ${
+  ).padStart(2, '0')}:${String(seconds).padStart(2, '0')} ${
     monthNames[month]
   } ${date}, ${year}`;
 }
@@ -99,13 +108,9 @@ function displayLoginStatus(username) {
 }
 
 /* Todo List */
-function deleteToDo(e) {
-  const li = e.target.parentElement;
-  li.remove();
-}
-
 function paintToDo(newToDo) {
   const li = document.createElement('li');
+  li.id = newToDo.id;
   const span = document.createElement('span');
   const button = document.createElement('button');
   button.innerText = '🆇';
@@ -114,7 +119,7 @@ function paintToDo(newToDo) {
   li.appendChild(span);
   li.classList.add('todo-item');
   li.appendChild(button);
-  span.innerText = newToDo;
+  span.innerText = newToDo.text;
   span.classList.add('todo-item-text');
   toDoList.appendChild(li);
 }
@@ -122,9 +127,30 @@ function paintToDo(newToDo) {
 /* Todo Form */
 function handleToDoSubmit(e) {
   e.preventDefault();
-  const newToDo = toDoInput.value;
+  const newToDo = { id: Date.now(), text: toDoInput.value };
   toDoInput.value = '';
+  toDos.push(newToDo);
+  saveToDos();
   paintToDo(newToDo);
 }
 
+function saveToDos() {
+  localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
+}
+
 toDoForm.addEventListener('submit', handleToDoSubmit);
+
+const savedToDos = localStorage.getItem(TODOS_KEY);
+
+if (savedToDos !== null) {
+  const parsedToDos = JSON.parse(savedToDos);
+  toDos = parsedToDos;
+  parsedToDos.forEach(paintToDo);
+}
+
+function deleteToDo(e) {
+  const li = e.target.parentElement;
+  li.remove();
+  toDos = toDos.filter((toDo) => parseInt(li.id) !== toDo.id);
+  saveToDos();
+}
