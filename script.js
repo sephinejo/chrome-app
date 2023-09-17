@@ -95,11 +95,11 @@ function clockFn() {
   const hours = today.getHours();
   const minutes = today.getMinutes();
   const seconds = today.getSeconds();
-  clock.innerText = `${String(hours).padStart(2, '0')}:${String(
-    minutes
-  ).padStart(2, '0')}:${String(seconds).padStart(2, '0')} ${
-    monthNames[month]
-  } ${date}, ${year}`;
+  clock.innerText = `[${monthNames[month]} ${date}, ${year}] ${String(
+    hours
+  ).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(
+    seconds
+  ).padStart(2, '0')}`;
 }
 
 /* Login Status */

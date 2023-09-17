@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/9ac80604cb.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="weather.js"></script>
     <title>Chrome App</title>
   </head>
@@ -19,7 +23,13 @@
     <header class="header hidden">
       <div class="clock-and-location">
         <div class="clock"></div>
-        <div className="location"></div>
+        <div class="location">
+          <i class="fa-solid fa-location-dot"></i>&nbsp;<span
+            class="city"
+          ></span>
+          &nbsp;
+          <span class="temperature"></span>
+        </div>
       </div>
       <div class="greeting"></div>
       <div class="login-status"></div>
