@@ -127,6 +127,7 @@ function paintToDo(newToDo) {
 /* Todo Form */
 function handleToDoSubmit(e) {
   e.preventDefault();
+  if (toDoInput.value === '') return;
   const newToDo = { id: Date.now(), text: toDoInput.value };
   toDoInput.value = '';
   toDos.push(newToDo);
